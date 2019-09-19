@@ -80,6 +80,13 @@ private:
 	// a xml_document to store the while config file and
 	// a xml_node to read specific branches of the xml
 
+	pugi::xml_node config;
+	pugi::xml_document configFile;
+	pugi::xml_document appConfig;
+
+	p2SString title;
+
+
 	int					argc;
 	char**				args;
 };

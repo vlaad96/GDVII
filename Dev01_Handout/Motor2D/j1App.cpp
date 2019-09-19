@@ -63,6 +63,18 @@ bool j1App::Awake()
 
 	bool ret = true;
 
+	pugi::xml_parse_result res = configFile.load_file("config.xml");
+
+	if (res == NULL)
+	{
+		LOG("Could not load map xml file config.xml. pugi error: %s", res.description());
+		ret = false;
+	}
+	else
+	{
+		config = configFile.child("config");
+	}
+
 	p2List_item<j1Module*>* item;
 	item = modules.start;
 
@@ -79,6 +91,10 @@ bool j1App::Awake()
 	 
 	// TODO 4: Read the title from the config file
 	// and set the window title using win->SetTitle()
+
+	title.create(appConfig.append_child("title").child_value());
+	win->SetTitle(title.GetString());
+
 
 	return ret;
 }

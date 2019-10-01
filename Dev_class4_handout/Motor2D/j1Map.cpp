@@ -85,3 +85,26 @@ bool j1Map::Load(const char* file_name)
 	return ret;
 }
 
+bool j1Map::LoadMap()
+{
+	bool ret = true;
+	pugi::xml_node map = map_file.child("map");
+
+	if (map == NULL)
+	{
+		LOG("Error parsing map xml file: Cannot find 'map' tag.");
+		ret = false;
+	}
+	else
+	{
+		data.width = map.attribute("width").as_uint();
+		data.width = map.attribute("height").as_uint();
+		data.width = map.attribute("tileWidth").as_uint();
+		data.width = map.attribute("tileHeight").as_uint();
+		
+		p2SString orientation(map.attribute("orientation").as_string());
+
+		if(orientation == "ORTHOGONAL")
+
+	}
+}
